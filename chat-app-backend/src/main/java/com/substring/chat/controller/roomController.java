@@ -1,5 +1,5 @@
 package com.substring.chat.controller;
-
+import com.substring.chat.DTO.CreateRoomRequest;
 import com.substring.chat.model.Message;
 import com.substring.chat.model.room;
 import com.substring.chat.repositry.RoomRepository;
@@ -22,13 +22,13 @@ public class roomController {
 
     //create room
     @PostMapping
-    public ResponseEntity<?> createRoom(@RequestBody String roomId){
+    public ResponseEntity<?> createRoom(@RequestBody CreateRoomRequest request){
 
-        if(roomRepository.findByRoomId(roomId)!= null){
+        if(roomRepository.findByRoomId(request.getRoomId())!= null){
             return  ResponseEntity.badRequest().body("Room is already created");
         }
         room room1= new room();
-        room1.setRoomId(roomId);
+        room1.setRoomId(request.getRoomId());
         room savedRoom = roomRepository.save(room1);
         return ResponseEntity.status(HttpStatus.CREATED).body(room1);
     }

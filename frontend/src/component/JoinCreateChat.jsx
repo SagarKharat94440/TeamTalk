@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import useChatContext from '../context/ChatContext';  
 
 function JoinCreateChat() {
-  const [detail, setDetail] = useState({ name: "", roomId: "" });
+  const [detail, setDetail] = useState({ name: "", roomId:""});
   const { setRoomId, setCurrentUser, setConnected } = useChatContext();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ function JoinCreateChat() {
         const room = await joinChatApi(detail.roomId);
         toast.success("Joined room successfully");
       } else if (action === "create") {
-        await createroom(detail.roomId);
+        await createroom(detail);
         toast.success("Room created successfully");
       }
 

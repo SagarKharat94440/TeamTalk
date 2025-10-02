@@ -1,7 +1,7 @@
 import { httpClient } from "../config/AxiosHelper"
 
  export const createroom = async (detail)=>{
-    const response = await httpClient.post('/api/v1/rooms', detail);
+    const response = await httpClient.post('/api/v1/rooms', { roomId: detail.roomId });
     return response.data;
 }
 
